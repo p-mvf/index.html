@@ -1,0 +1,200 @@
+/* ============================================
+   ESTILOS GENERALES Y LOGIN
+   ============================================ */
+:root {
+    --color-primary: #1e3a8a;
+    --color-secondary: #0d9488;
+    --color-danger: #dc2626;
+    --color-bg: #f8fafc;
+    --color-card: #ffffff;
+    --color-text: #1e293b;
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+/* PANTALLAS */
+.pantalla {
+    display: none;
+}
+
+.pantalla.activa {
+    display: block;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* CAJA DE LOGIN */
+#vista-login {
+    display: none;
+    height: 100vh;
+    background-color: var(--color-primary);
+}
+
+#vista-login.activa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background-color: var(--color-card);
+    padding: 2.5rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.login-container h2 {
+    font-size: 1.3rem;
+    color: var(--color-primary);
+}
+
+.login-container h3 {
+    font-size: 1rem;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+}
+
+.input-field {
+    width: 100%;
+    padding: 0.6rem;
+    margin: 0.4rem 0 1rem 0;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.error-msg {
+    color: var(--color-danger);
+    font-size: 0.85rem;
+    margin-top: 0.8rem;
+}
+
+.login-credentials-info {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e2e8f0;
+    text-align: left;
+    color: #64748b;
+}
+
+/* ENCABEZADO Y NAVEGACIÓN */
+.main-header {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    padding: 1rem 2rem;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.main-nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* ESTRUCTURA */
+.main-content {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.hero-section {
+    background-color: var(--color-card);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.card {
+    background-color: var(--color-card);
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.admin-table th, .admin-table td {
+    padding: 0.6rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* BOTONES */
+button {
+    cursor: pointer;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.btn-primary { background-color: var(--color-primary); color: #fff; }
+.btn-action { background-color: #e2e8f0; }
+.btn-danger { background-color: var(--color-danger); color: #fff; }
+.btn-small { padding: 0.3rem 0.5rem; background-color: var(--color-primary); color: #fff; }
+
+.main-footer {
+    background-color: var(--color-primary);
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 3rem;
+}

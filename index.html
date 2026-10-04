@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COPACI Granjas Guadalupe - Sistema de Gestión Ciudadana</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- INTERFAZ 0: PANTALLA DE INICIO DE SESIÓN     -->
+    <!-- ============================================ -->
+    <div id="vista-login" class="pantalla activa">
+        <div class="login-container">
+            <img src="img. html.jpeg" alt="Logo COPACI" class="logo">
+            <h2>Sistema de Gestión Ciudadana</h2>
+            <h3>COPACI Granjas Guadalupe</h3>
+            <p>Ingrese sus credenciales de acceso</p>
+
+            <form onsubmit="iniciarSesion(event)">
+                <label>Usuario:</label>
+                <input type="text" id="login-usuario" class="input-field" placeholder="Ingrese su usuario" required>
+
+                <label>Contraseña:</label>
+                <input type="password" id="login-password" class="input-field" placeholder="••••••••" required>
+
+                <button type="submit" class="btn-primary btn-block">Iniciar Sesión</button>
+            </form>
+            
+            <p id="login-error" class="error-msg"></p>
+        </div>
+    </div>
+
+    <!-- ENCABEZADO PERMANENTE -->
+    <header id="main-header" class="main-header hidden">
+        <div class="header-container">
+            <img src="img. html.jpeg" alt="Logo COPACI" class="logo">
+            <div class="header-text">
+                <h1>Sistema de Gestión Ciudadana</h1>
+                <h2>COPACI Granjas Guadalupe</h2>
+            </div>
+            <div class="user-info">
+                <span id="sesion-usuario">Usuario</span>
+                <button class="btn-danger btn-small" onclick="cerrarSesion()">Cerrar Sesión</button>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#" onclick="navegarA('vista-inicio')">Inicio</a></li>
+                <li class="permiso-ciudadano"><a href="#" onclick="navegarA('vista-reportes')">Reportes</a></li>
+                <li class="permiso-ciudadano"><a href="#" onclick="navegarA('vista-tramites')">Trámites</a></li>
+                <li class="permiso-ciudadano"><a href="#" onclick="navegarA('vista-opiniones')">Opiniones</a></li>
+                <li class="permiso-ciudadano"><a href="#" onclick="navegarA('vista-membresia')">Membresía</a></li>
+                <li class="permiso-copaci"><a href="#" onclick="navegarA('vista-copaci')">Gestión COPACI</a></li>
+                <li class="permiso-admin"><a href="#" onclick="navegarA('vista-admin')">Administración</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+
+        <!-- VISTA INICIO -->
+        <div id="vista-inicio" class="pantalla">
+            <section class="hero-section">
+                <h2>Bienvenido al Portal Vecinal</h2>
+                <p id="mensaje-rol">Seleccione las opciones disponibles según su perfil.</p>
+            </section>
+
+            <section class="module-section permiso-ciudadano">
+                <h2>Módulos del Ciudadano</h2>
+                <div class="card-grid">
+                    <article class="card">
+                        <h3>Reportes de Servicios</h3>
+                        <p>Envíe incidencias de bacheo, luminarias o seguridad pública.</p>
+                        <button class="btn-action" onclick="navegarA('vista-reportes')">Abrir Reportes</button>
+                    </article>
+                    <article class="card">
+                        <h3>Trámite de Documentos</h3>
+                        <p>Solicite constancias de residencia y comprobantes.</p>
+                        <button class="btn-action" onclick="navegarA('vista-tramites')">Abrir Trámites</button>
+                    </article>
+                    <article class="card">
+                        <h3>Buzón de Opiniones</h3>
+                        <p>Comparta sus propuestas para mejorar la colonia.</p>
+                        <button class="btn-action" onclick="navegarA('vista-opiniones')">Abrir Opiniones</button>
+                    </article>
+                    <article class="card">
+                        <h3>Membresía Vecinal</h3>
+                        <p>Inscríbase al padrón oficial de residentes.</p>
+                        <button class="btn-action" onclick="navegarA('vista-membresia')">Solicitar Membresía</button>
+                    </article>
+                </div>
+            </section>
+
+            <section class="module-section permiso-copaci">
+                <h2>Módulo de Gestión COPACI</h2>
+                <div class="card-grid">
+                    <article class="card">
+                        <h3>Panel de Administración Vecinal</h3>
+                        <p>Gestione avisos a la comunidad, informes trimestrales y eventos.</p>
+                        <button class="btn-primary" onclick="navegarA('vista-copaci')">Ir al Panel COPACI</button>
+                    </article>
+                </div>
+            </section>
+
+            <section class="module-section permiso-admin">
+                <h2>Módulo de Administración del Sistema</h2>
+                <div class="card-grid">
+                    <article class="card">
+                        <h3>Control de Usuarios</h3>
+                        <p>Registrar, actualizar y eliminar cuentas de usuario.</p>
+                        <button class="btn-primary" onclick="navegarA('vista-admin')">Ir a Gestión de Usuarios</button>
+                    </article>
+                </div>
+            </section>
+        </div>
+
+        <!-- FORMULARIOS CIUDADANO -->
+        <div id="vista-reportes" class="pantalla permiso-ciudadano">
+            <section class="hero-section">
+                <h2>Interfaz: Registrar Reportes</h2>
+                <form onsubmit="guardarRegistro(event, 'Reporte enviado con éxito')">
+                    <label>Tipo de Incidencia:</label>
+                    <select class="input-field" required>
+                        <option>Luminarias defectuosas</option>
+                        <option>Bacheo de calle</option>
+                        <option>Fuga de agua</option>
+                    </select>
+
+                    <label>Descripción del problema:</label>
+                    <textarea class="input-field" rows="4" required></textarea>
+
+                    <button type="submit" class="btn-primary">Enviar Reporte</button>
+                    <button type="button" class="btn-action" onclick="navegarA('vista-inicio')">Volver</button>
+                </form>
+            </section>
+        </div>
+
+        <div id="vista-tramites" class="pantalla permiso-ciudadano">
+            <section class="hero-section">
+                <h2>Interfaz: Trámite de Documentos</h2>
+                <form onsubmit="guardarRegistro(event, 'Trámite enviado')">
+                    <label>Documento Requerido:</label>
+                    <select class="input-field" required>
+                        <option>Constancia de Residencia</option>
+                        <option>Carta Patronal</option>
+                    </select>
+
+                    <label>Nombre completo:</label>
+                    <input type="text" class="input-field" required>
+
+                    <button type="submit" class="btn-primary">Solicitar Documento</button>
+                    <button type="button" class="btn-action" onclick="navegarA('vista-inicio')">Volver</button>
+                </form>
+            </section>
+        </div>
+
+        <div id="vista-opiniones" class="pantalla permiso-ciudadano">
+            <section class="hero-section">
+                <h2>Interfaz: Buzón de Opiniones</h2>
+                <form onsubmit="guardarRegistro(event, 'Opinión enviada')">
+                    <label>Su mensaje o sugerencia:</label>
+                    <textarea class="input-field" rows="4" required></textarea>
+
+                    <button type="submit" class="btn-primary">Enviar Mensaje</button>
+                    <button type="button" class="btn-action" onclick="navegarA('vista-inicio')">Volver</button>
+                </form>
+            </section>
+        </div>
+
+        <div id="vista-membresia" class="pantalla permiso-ciudadano">
+            <section class="hero-section">
+                <h2>Interfaz: Registro de Membresía</h2>
+                <form onsubmit="guardarRegistro(event, 'Solicitud de membresía recibida')">
+                    <label>Nombre Completo:</label>
+                    <input type="text" class="input-field" required>
+
+                    <label>Dirección:</label>
+                    <input type="text" class="input-field" required>
+
+                    <button type="submit" class="btn-primary">Registrar Membresía</button>
+                    <button type="button" class="btn-action" onclick="navegarA('vista-inicio')">Volver</button>
+                </form>
+            </section>
+        </div>
+
+        <!-- COPACI Y ADMIN -->
+        <div id="vista-copaci" class="pantalla permiso-copaci">
+            <section class="hero-section">
+                <h2>Interfaz: Panel COPACI</h2>
+                <div class="copaci-box">
+                    <h3>Publicar Avisos a la Comunidad</h3>
+                    <input type="text" class="input-field" placeholder="Escriba el anuncio oficial...">
+                    <button class="btn-primary" onclick="alert('Aviso publicado')">Publicar Aviso</button>
+                </div>
+                <br>
+                <button type="button" class="btn-action" onclick="navegarA('vista-inicio')">Volver</button>
+            </section>
+        </div>
+
+        <div id="vista-admin" class="pantalla permiso-admin">
+            <section class="hero-section">
+                <h2>Interfaz: Control de Usuarios (Administrador)</h2>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Rol</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Carlos Mendoza</td>
+                            <td>Administrador</td>
+                            <td>
+                                <button class="btn-small" onclick="alert('Actualizado')">Actualizar</button>
+                                <button class="btn-danger" onclick="this.closest('tr').remove()">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <button type="button" class="btn-action" onclick="navegarA('vista-inicio')">Volver</button>
+            </section>
+        </div>
+
+    </main>
+
+    <footer id="main-footer" class="main-footer hidden">
+        <p>&copy; 2026 COPACI Granjas Guadalupe - Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- LÓGICA DE USUARIOS Y NAVEGACIÓN -->
+    <script>
+        const usuariosBase = {
+            'ciudadano': { pass: '123', rol: 'Ciudadano' },
+            'copaci': { pass: '123', rol: 'COPACI' },
+            'admin': { pass: '123', rol: 'Administrador' }
+        };
+
+        function iniciarSesion(e) {
+            e.preventDefault();
+            const user = document.getElementById('login-usuario').value.toLowerCase().trim();
+            const pass = document.getElementById('login-password').value;
+            const errorMsg = document.getElementById('login-error');
+
+            if (usuariosBase[user] && usuariosBase[user].pass === pass) {
+                errorMsg.innerText = '';
+                const rolActivo = usuariosBase[user].rol;
+
+                document.getElementById('sesion-usuario').innerText = `${user.toUpperCase()} (${rolActivo})`;
+                
+                document.getElementById('main-header').classList.remove('hidden');
+                document.getElementById('main-footer').classList.remove('hidden');
+
+                aplicarPermisosRol(user);
+                navegarA('vista-inicio');
+            } else {
+                errorMsg.innerText = 'Usuario o contraseña incorrectos.';
+            }
+        }
+
+        function aplicarPermisosRol(usuario) {
+            document.querySelectorAll('.permiso-ciudadano, .permiso-copaci, .permiso-admin').forEach(el => {
+                el.style.display = 'none';
+            });
+
+            if (usuario === 'ciudadano') {
+                document.querySelectorAll('.permiso-ciudadano').forEach(el => el.style.display = 'block');
+                document.getElementById('mensaje-rol').innerText = 'Bienvenido Ciudadano. Puede enviar sus solicitudes, trámites y reportes.';
+            } else if (usuario === 'copaci') {
+                document.querySelectorAll('.permiso-copaci').forEach(el => el.style.display = 'block');
+                document.getElementById('mensaje-rol').innerText = 'Bienvenido Representante COPACI. Panel de avisos e informes activo.';
+            } else if (usuario === 'admin') {
+                document.querySelectorAll('.permiso-admin').forEach(el => el.style.display = 'block');
+                document.getElementById('mensaje-rol').innerText = 'Bienvenido Administrador. Módulo de gestión de usuarios activo.';
+            }
+        }
+
+        function cerrarSesion() {
+            document.getElementById('main-header').classList.add('hidden');
+            document.getElementById('main-footer').classList.add('hidden');
+            document.getElementById('login-usuario').value = '';
+            document.getElementById('login-password').value = '';
+            navegarA('vista-login');
+        }
+
+        function navegarA(idVista) {
+            document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
+            const objetivo = document.getElementById(idVista);
+            if (objetivo) {
+                objetivo.classList.add('activa');
+            }
+        }
+
+        function guardarRegistro(e, mensaje) {
+            e.preventDefault();
+            alert(mensaje);
+            navegarA('vista-inicio');
+        }
+    </script>
+</body>
+</html>
